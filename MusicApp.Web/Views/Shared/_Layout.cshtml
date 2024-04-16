@@ -1,0 +1,60 @@
+﻿
+@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>@ViewBag.Title - My ASP.NET Application</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+     <link rel="shortcut icon" type="image/png" href="/images/svg/">
+
+     @Styles.Render("~/bundles/fonts/css")
+     @Styles.Render("~/bundles/bootstrap/css")
+     @Styles.Render("~/bundles/font-awesome/css")
+     @Styles.Render("~/bundles/swiper/css")
+     @Styles.Render("~/bundles/nice-select/css")
+     @Styles.Render("~/bundles/volume/css")
+     @Styles.Render("~/bundles/mCustomScrollbar/css")
+     @Styles.Render("~/bundles/style/css")
+
+
+
+     @if (IsSectionDefined("Styles"))
+     {
+          @RenderSection("Styles", required: false)
+     }
+     @Styles.Render("~/bundles/main/css")
+
+</head>
+<body>
+<!---Loader Start---->
+<div class="ms_loader">
+     <div class="wrap">
+          <img src="images/loader.gif" alt="">
+     </div>
+</div>
+<!----Main Wrapper Start---->
+<div class="ms_main_wrapper">
+     @Html.Partial("_SideMenu")
+     @Html.Partial("_MainContent")
+     @Html.Partial("_Footer")
+     @Html.Partial("_AudioPLayer")
+     @RenderBody()
+</div>
+
+     @Scripts.Render("~/bundles/jquery/js")
+     @Scripts.Render("~/bundles/bootstrap/js")
+     @Scripts.Render("~/bundles/swiper/js")
+     @Scripts.Render("~/bundles/playlist/js")
+     @Scripts.Render("~/bundles/jplayer/js")
+     @Scripts.Render("~/bundles/audio-player/js")
+     @Scripts.Render("~/bundles/volume/js")
+     @Scripts.Render("~/bundles/nice-select/js")
+     @Scripts.Render("~/bundles/mCustomScrollbar/js")
+     @Scripts.Render("~/bundles/custom/js")
+     @RenderSection("scripts", required: false)
+
+</body>
+</html>
