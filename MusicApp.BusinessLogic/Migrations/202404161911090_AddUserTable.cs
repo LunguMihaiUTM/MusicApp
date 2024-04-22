@@ -17,6 +17,7 @@
                         Email = c.String(nullable: false, maxLength: 30),
                         LastLogin = c.DateTime(nullable: false),
                         LastIp = c.String(maxLength: 30),
+                        Level = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

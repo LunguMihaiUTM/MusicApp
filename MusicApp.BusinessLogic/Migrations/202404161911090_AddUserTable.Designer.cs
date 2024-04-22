@@ -13,7 +13,7 @@ namespace MusicApp.BusinessLogic.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202404161735491_AddUserTable"; }
+            get { return "202404161911090_AddUserTable"; }
         }
         
         string IMigrationMetadata.Source
