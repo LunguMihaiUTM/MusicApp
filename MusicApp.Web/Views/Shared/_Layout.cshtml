@@ -37,11 +37,12 @@
 </div>
 <!----Main Wrapper Start---->
 <div class="ms_main_wrapper">
+     @Html.Partial("_Header")
      @Html.Partial("_SideMenu")
-     @Html.Partial("_MainContent")
+     @RenderBody()
      @Html.Partial("_Footer")
      @Html.Partial("_AudioPLayer")
-     @RenderBody()
+
 </div>
 
      @Scripts.Render("~/bundles/jquery/js")
