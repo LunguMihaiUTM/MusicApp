@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MusicApp.Domain.Enums
 {
-    public class URole
+    public enum URole
     {
+        User,
+        Moderator,
+        Admin
     }
 }

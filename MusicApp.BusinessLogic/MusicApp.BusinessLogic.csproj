@@ -56,9 +56,13 @@
     <Compile Include="Core\UserApi.cs" />
     <Compile Include="DBModel\UserContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
-    <Compile Include="Migrations\202404161735491_AddUserTable.cs" />
-    <Compile Include="Migrations\202404161735491_AddUserTable.Designer.cs">
-      <DependentUpon>202404161735491_AddUserTable.cs</DependentUpon>
+    <Compile Include="Migrations\202404161911090_AddUserTable.cs" />
+    <Compile Include="Migrations\202404161911090_AddUserTable.Designer.cs">
+      <DependentUpon>202404161911090_AddUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404171141360_AddUser.cs" />
+    <Compile Include="Migrations\202404171141360_AddUser.Designer.cs">
+      <DependentUpon>202404171141360_AddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,8 +86,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404161735491_AddUserTable.resx">
-      <DependentUpon>202404161735491_AddUserTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404161911090_AddUserTable.resx">
+      <DependentUpon>202404161911090_AddUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404171141360_AddUser.resx">
+      <DependentUpon>202404171141360_AddUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
