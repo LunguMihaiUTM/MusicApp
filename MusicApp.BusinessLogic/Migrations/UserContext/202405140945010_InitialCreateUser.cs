@@ -1,9 +1,9 @@
-﻿namespace MusicApp.BusinessLogic.Migrations
+﻿namespace MusicApp.BusinessLogic.Migrations.UserContext
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddUserTable : DbMigration
+    public partial class InitialCreateUser : DbMigration
     {
         public override void Up()
         {

@@ -1,18 +1,19 @@
-﻿namespace MusicApp.BusinessLogic.Migrations
+﻿namespace MusicApp.BusinessLogic.Migrations.SessionContext
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MusicApp.BusinessLogic.DBModel.UserContext>
+    internal sealed class SessionConfiguration : DbMigrationsConfiguration<MusicApp.BusinessLogic.DBModel.SessionContext>
     {
-        public Configuration()
+        public SessionConfiguration()
         {
             AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"Migrations/SessionContext";
         }
 
-        protected override void Seed(MusicApp.BusinessLogic.DBModel.UserContext context)
+        protected override void Seed(MusicApp.BusinessLogic.DBModel.SessionContext context)
         {
             //  This method will be called after migrating to the latest version.
 
