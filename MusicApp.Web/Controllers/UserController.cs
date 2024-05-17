@@ -6,13 +6,10 @@ using System.Web.Mvc;
 
 namespace MusicApp.Web.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult _Header()
+        // GET: User
+        public ActionResult _UserHeader()
         {
             return View();
         }

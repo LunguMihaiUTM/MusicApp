@@ -12,6 +12,7 @@ namespace MusicApp.Web.Controllers
 {
     public class LoginController : Controller
     {
+
         private readonly ISession _session;
 
         public LoginController()
@@ -37,7 +38,7 @@ namespace MusicApp.Web.Controllers
                     Credential = login.Credential,
                     Password = login.Password,
                     LoginIp = Request.UserHostAddress,
-                    LoginDateTime = DateTime.Now
+                    LoginDateTime = DateTime.Now,
                 };
 
                 var userLogin = _session.UserLogin(data);
@@ -45,7 +46,6 @@ namespace MusicApp.Web.Controllers
                 {
                     //ADD COOKIE
                     return RedirectToAction("Index", "Home");
-
                 }
                 else
                 {
