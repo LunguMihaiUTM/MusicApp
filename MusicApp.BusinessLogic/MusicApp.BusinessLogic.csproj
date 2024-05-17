@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -43,6 +46,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,17 +59,45 @@
     <Compile Include="BussinesLogic.cs" />
     <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
+    <Compile Include="DBModel\SessionContext.cs" />
+    <Compile Include="DBModel\SongContext.cs" />
     <Compile Include="DBModel\UserContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
-    <Compile Include="Migrations\202404161911090_AddUserTable.cs" />
-    <Compile Include="Migrations\202404161911090_AddUserTable.Designer.cs">
-      <DependentUpon>202404161911090_AddUserTable.cs</DependentUpon>
+    <Compile Include="Migrations\SessionContext\202405140948405_InitialCreateSession.cs" />
+    <Compile Include="Migrations\SessionContext\202405140948405_InitialCreateSession.Designer.cs">
+      <DependentUpon>202405140948405_InitialCreateSession.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404171141360_AddUser.cs" />
-    <Compile Include="Migrations\202404171141360_AddUser.Designer.cs">
-      <DependentUpon>202404171141360_AddUser.cs</DependentUpon>
+    <Compile Include="Migrations\SessionContext\SessionConfiguration.cs" />
+    <Compile Include="Migrations\SongContext\202405141505531_InitialCreateSong.cs" />
+    <Compile Include="Migrations\SongContext\202405141505531_InitialCreateSong.Designer.cs">
+      <DependentUpon>202405141505531_InitialCreateSong.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SongContext\202405141523110_AddTestSong.cs" />
+    <Compile Include="Migrations\SongContext\202405141523110_AddTestSong.Designer.cs">
+      <DependentUpon>202405141523110_AddTestSong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SongContext\202405150748195_AddSongTest.cs" />
+    <Compile Include="Migrations\SongContext\202405150748195_AddSongTest.Designer.cs">
+      <DependentUpon>202405150748195_AddSongTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SongContext\202405150801123_AddSongTest1.cs" />
+    <Compile Include="Migrations\SongContext\202405150801123_AddSongTest1.Designer.cs">
+      <DependentUpon>202405150801123_AddSongTest1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SongContext\202405150807150_AddSongTest2.cs" />
+    <Compile Include="Migrations\SongContext\202405150807150_AddSongTest2.Designer.cs">
+      <DependentUpon>202405150807150_AddSongTest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SongContext\SongConfiguration.cs" />
+    <Compile Include="Migrations\UserContext\202405140945010_InitialCreateUser.cs" />
+    <Compile Include="Migrations\UserContext\202405140945010_InitialCreateUser.Designer.cs">
+      <DependentUpon>202405140945010_InitialCreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserContext\202405141349407_AddTestUser.cs" />
+    <Compile Include="Migrations\UserContext\202405141349407_AddTestUser.Designer.cs">
+      <DependentUpon>202405141349407_AddTestUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserContext\UserConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionBL.cs" />
   </ItemGroup>
@@ -86,11 +119,29 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404161911090_AddUserTable.resx">
-      <DependentUpon>202404161911090_AddUserTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\SessionContext\202405140948405_InitialCreateSession.resx">
+      <DependentUpon>202405140948405_InitialCreateSession.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404171141360_AddUser.resx">
-      <DependentUpon>202404171141360_AddUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\SongContext\202405141505531_InitialCreateSong.resx">
+      <DependentUpon>202405141505531_InitialCreateSong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SongContext\202405141523110_AddTestSong.resx">
+      <DependentUpon>202405141523110_AddTestSong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SongContext\202405150748195_AddSongTest.resx">
+      <DependentUpon>202405150748195_AddSongTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SongContext\202405150801123_AddSongTest1.resx">
+      <DependentUpon>202405150801123_AddSongTest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SongContext\202405150807150_AddSongTest2.resx">
+      <DependentUpon>202405150807150_AddSongTest2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\UserContext\202405140945010_InitialCreateUser.resx">
+      <DependentUpon>202405140945010_InitialCreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\UserContext\202405141349407_AddTestUser.resx">
+      <DependentUpon>202405141349407_AddTestUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

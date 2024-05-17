@@ -16,6 +16,12 @@ namespace MusicApp.BusinessLogic
         {
             return UserLoginAction(data);
         }
+
+        public URegResp UserRegister(URegData data)
+        {
+            return UserRegisterAction(data);
+        }
+
         public HttpCookie GenCookie(string loginCredential)
         {
             return Cookie(loginCredential);

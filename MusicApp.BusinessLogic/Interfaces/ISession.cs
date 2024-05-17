@@ -10,6 +10,7 @@ namespace MusicApp.BusinessLogic.Interfaces
 {
     public interface ISession
     {
+        URegResp UserRegister(URegData data);
         ULoginResp UserLogin(ULoginData data);
         HttpCookie GenCookie(string loginCredential);
         UserMinimal GetUserByCookie(string apiCookieValue);
