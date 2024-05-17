@@ -1,0 +1,147 @@
+﻿@model MusicApp.Domain.Entities.Music.SongTables
+
+@{
+     ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Simple Music Player</title>
+     <style>
+          body {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+               background-color: #f0f0f0;
+               margin: 0;
+               font-family: Arial, sans-serif;
+               padding-top: 500px;
+          }
+
+          .player {
+               background: #fff;
+               border-radius: 10px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+               padding: 20px;
+               text-align: center;
+               width: 1200px;
+               margin-left: 200px;
+          }
+
+               .player h1 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+               }
+
+          audio {
+               width: 100%;
+               margin-bottom: 20px;
+          }
+
+          .controls {
+               display: flex;
+               justify-content: center;
+          }
+
+          button {
+               background-color: #007bff;
+               border: none;
+               color: white;
+               padding: 10px 20px;
+               margin: 0 10px;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 16px;
+          }
+
+               button:hover {
+                    background-color: #0056b3;
+               }
+     </style>
+</head>
+<body>
+     <div class="player">
+          <h1>Simple Music Player</h1>
+          <audio id="audio" controls>
+               <source id="audioSource" src="" type="audio/mpeg">
+               Your browser does not support the audio element.
+          </audio>
+          <div class="controls">
+               <button id="prev">Previous</button>
+               <button id="playPause">Play/Pause</button>
+               <button id="stop">Stop</button>
+               <button id="next">Next</button>
+          </div>
+     </div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script>
+        $(document).ready(function () {
+            const audio = $('#audio')[0];
+            const playPauseBtn = $('#playPause');
+            const stopBtn = $('#stop');
+            const prevBtn = $('#prev');
+            const nextBtn = $('#next');
+            let currentSongIndex = 0;
+            let songs = [];
+
+            function loadSong(index) {
+                const song = songs[index];
+                if (song) {
+                    $('#audioSource').attr('src', `@Url.Action("GetSong", "Song")?id=${song.Id}`);
+                    audio.load();
+                    audio.play();
+                    playPauseBtn.text('Pause');
+                }
+            }
+
+            playPauseBtn.on('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.text('Pause');
+                } else {
+                    audio.pause();
+                    playPauseBtn.text('Play');
+                }
+            });
+
+            stopBtn.on('click', function () {
+                audio.pause();
+                audio.currentTime = 0;
+                playPauseBtn.text('Play');
+            });
+
+            prevBtn.on('click', function () {
+                if (currentSongIndex > 0) {
+                    currentSongIndex--;
+                    loadSong(currentSongIndex);
+                }
+            });
+
+            nextBtn.on('click', function () {
+                if (currentSongIndex < songs.length - 1) {
+                    currentSongIndex++;
+                    loadSong(currentSongIndex);
+                }
+            });
+
+
+            // Load the list of songs from the server
+            $.ajax({
+                url: '@Url.Action("GetSongs", "Song")',
+                method: 'GET',
+                success: function (data) {
+                    songs = data;
+                    if (songs.length > 0) {
+                        loadSong(currentSongIndex);
+                    }
+                }
+            });
+        });
+     </script>
+</body>
+</html>

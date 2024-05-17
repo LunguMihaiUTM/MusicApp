@@ -37,12 +37,19 @@
 </div>
 <!----Main Wrapper Start---->
 <div class="ms_main_wrapper">
-     @Html.Partial("_Header")
+     @if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
+     {
+          @Html.Partial("_LoggedUserHeader")
+     }
+     else
+     {
+          @Html.Partial("_Header")
+     }
+
      @Html.Partial("_SideMenu")
      @RenderBody()
      @Html.Partial("_Footer")
      @Html.Partial("_AudioPLayer")
-
 </div>
 
      @Scripts.Render("~/bundles/jquery/js")
