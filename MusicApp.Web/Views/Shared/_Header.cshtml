@@ -9,36 +9,37 @@
      <div class="ms_content_wrapper padder_top80">
 
           <div class="ms_header">
-                    <div class="ms_top_left">
-                         <div class="ms_top_search">
-                              <input type="text" class="form-control" placeholder="Search Music Here..">
-                              <span class="search_icon">
-                                   <img src="images/svg/search.svg" alt="">
-                              </span>
-                         </div>
-                         <div class="ms_top_trend">
-                              <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
-                         </div>
+               <div class="ms_top_left">
+                    <div class="ms_top_search">
+                         <input type="text" class="form-control" placeholder="Search Music Here..">
+                         <span class="search_icon">
+                              <img src="images/svg/search.svg" alt="">
+                         </span>
                     </div>
-                    <div class="ms_top_right">
-                         <div class="ms_top_lang">
-                              <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
-                         </div>
-                         <div class="ms_top_btn">
-                              <a href="@Url.Action("Index", "Register")"><span>Register</span></a>
-                              <a href="@Url.Action("_Login", "Login")"><span>Login</span></a>
-                              <a href="@Url.Action("Player", "Song")"><span>Player</span></a>
-                              <!-- verificare primire imagini din BD
-                              <img src="@Url.Action("GetImage", "Song", new { id = 2 })" alt="Your Image" />
-                              -->
-                              <!-- Verificare primire piesa din DB
-                                   <audio id="audio" controls>
-                                   <source src="@Url.Action("GetSong", "Song", new { id = 2 })" type="audio/mpeg">
-                                   Your browser does not support the audio element.
-                                   </audio>
-                              -->
-                         </div>
+                    <div class="ms_top_trend">
+                         <span><a class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a>Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                     </div>
+               </div>
+               <div class="ms_top_right">
+                    <div class="ms_top_lang">
+                         <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+                    </div>
+                    <div class="ms_top_btn">
+
+                         <a href="@Url.Action("Index", "Register")"><span class="ms_btn reg_btn" >Register</span></a>
+                         <a href="@Url.Action("Index", "Login")"><span class="ms_btn login_btn" >Login</span></a>
+                         <a href="@Url.Action("Player", "Song")"><span>Player</span></a>
+                         <!-- verificare primire imagini din BD
+                         <img src="@Url.Action("GetImage", "Song", new { id = 2 })" alt="Your Image" />
+                         -->
+                         <!-- Verificare primire piesa din DB
+                         <audio id="audio" controls>
+                              <source src="@Url.Action("GetSong", "Song", new { id = 2 })" type="audio/mpeg">
+                              Your browser does not support the audio element.
+                         </audio>
+                         -->
+                    </div>
+               </div>
           </div>
      </div>
 </div>

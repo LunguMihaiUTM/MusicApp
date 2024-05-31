@@ -1,37 +1,52 @@
-﻿
+﻿@using MusicApp.Web.Extension
+
 @{
      ViewBag.Title = "_LoggedUserHeader";
 }
 
-<!---Header--->
-<div class="ms_header">
-     <div class="ms_top_left">
-          <div class="ms_top_search">
-               <input type="text" class="form-control" placeholder="Search Music Here..">
-               <span class="search_icon">
-                    <img src="images/svg/search.svg" alt="">
-               </span>
-          </div>
-          <div class="ms_top_trend">
-               <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
-          </div>
-     </div>
-     <div class="ms_top_right">
-          <div class="ms_top_lang">
-               <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
-          </div>
-          <div class="ms_top_btn">
-               <a href="upload.html" class="ms_btn">upload</a>
-               <a href="javascript:;" class="ms_admin_name">
-                    Hello Bella <span class="ms_pro_name">ns</span>
-               </a>
-               <ul class="pro_dropdown_menu">
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="manage_acc.html" target="_blank">Pricing Plan</a></li>
-                    <li><a href="blog.html" target="_blank">Blog</a></li>
-                    <li><a href="#">Setting</a></li>
-                    <li><a href="#">Logout</a></li>
-               </ul>
+
+
+<div class="ms_main_wrapper">
+     <div class="ms_content_wrapper padder_top80">
+          <!---Header--->
+          <div class="ms_header">
+               <div class="ms_top_left">
+                    <div class="ms_top_search">
+                         <input type="text" class="form-control" placeholder="Search Music Here..">
+                         <span class="search_icon">
+                              <img src="images/svg/search.svg" alt="">
+                         </span>
+                    </div>
+                    <div class="ms_top_trend">
+                         <span><a class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a>Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+                    </div>
+               </div>
+               <div class="ms_top_right">
+                    <div class="ms_top_lang">
+                         <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+                    </div>
+                    <div class="ms_top_btn">
+                         @if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
+                         {
+                              var user = System.Web.HttpContext.Current.GetMySessionObject();
+                              var username = user?.Username;
+                              if (!string.IsNullOrEmpty(username))
+                              {
+                                   <a class="ms_btn">upload</a>
+                                   <a class="ms_admin_name">
+                                        @username <span class="ms_pro_name">ns</span>
+                                   </a>
+                              }
+
+                         }
+                         <ul class="pro_dropdown_menu">
+                              <li><a href="@Url.Action("Index", "User")">Profile</a></li>
+                              <li><a>Pricing Plan</a></li>
+                              <li><a>Setting</a></li>
+                              <li><a>Logout</a></li>
+                         </ul>
+                    </div>
+               </div>
           </div>
      </div>
 </div>
