@@ -3130,11 +3130,13 @@ span.ms_frequency {
 	overflow: hidden;
 }
 .modal-dialog {
-	max-width: 930px;
+	padding-top: 600px;
+	left: 450px;
+	max-width: 800px;
 	width: 100%;
-	position: absolute;
+	/*position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 50%;*/
 	transform: translate(-50%, -50%) !important;
 	-webkit-transform: translate(-50%, -50%) !important;
 	-moz-transform: translate(-50%, -50%) !important;
@@ -3369,6 +3371,26 @@ div#myModal1 p {
 	}
 }
 /*====Clear All Modal====*/
+
+.modal-dialog button {
+	margin-right: 120px;
+	border: 1px solid #fff;
+	position: absolute;
+	right: -12px;
+	z-index: 1;
+	top: -15px;
+	width: 80px;
+	height: 35px;
+	background-color: #fff;
+	opacity: 1;
+	border-radius: 20px;
+	border-color: white;
+	cursor: pointer !important;
+	background-color: transparent;
+	color: white;
+	padding: 5px;
+}
+
 .ms_clear_modal .modal-dialog,
 .ms_save_modal .modal-dialog {
 	max-width: 500px;
