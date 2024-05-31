@@ -1,46 +1,58 @@
 ﻿@model MusicApp.Web.Models.UserReg
-
-<!-- Modal content-->
-<div class="customLogin">
-     <button type="button" class="close" data-dismiss="modal">
-          <i class="fa_icon form_close"></i>
-     </button>
-     <div>
-          <div>
-               <img src="images/register_img.png" alt="" class="img-fluid" />
-          </div>
-          @using (Html.BeginForm("Index", "Register", FormMethod.Post))
-          {
-               <body>
-               @Html.AntiForgeryToken()
-               <div class="login-container">
-                    <h2>Registration</h2>
-                    <div class="form-group">
-                         @Html.LabelFor(m => m.Email)
-                         @Html.TextBoxFor(m => m.Email, new { required = "required" })
-                         @Html.ValidationMessageFor(m => m.Email)
-                    </div>
-                    <div class="form-group">
-                         @Html.LabelFor(m => m.Credential)
-                         @Html.TextBoxFor(m => m.Credential, new { required = "required" })
-                         @Html.ValidationMessageFor(m => m.Credential)
-                    </div>
-
-                    <div class="form-group">
-                         @Html.LabelFor(m => m.Password)
-                         @Html.PasswordFor(m => m.Password, new { required = "required" })
-                         @Html.ValidationMessageFor(m => m.Password)
-                    </div>
-                    <div class="form-group">
-                         @Html.LabelFor(m => m.ConfirmPassword)
-                         @Html.PasswordFor(m => m.ConfirmPassword, new { required = "required" })
-                         @Html.ValidationMessageFor(m => m.ConfirmPassword)
-                    </div>
-                    <div class="form-group">
-                         <button type="submit">Register</button>
-                    </div>
+<div class="modal-dialog register_dialog">
+     <!-- Modal content-->
+     <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal">
+               <i class="fa_icon form_close"></i>
+          </button>
+          <div class="modal-body">
+               <div class="ms_register_img">
+                    <img src="images/register_img.png" alt="" class="img-fluid" />
                </div>
-               </body>
-          }
+               <div class="ms_register_form">
+                    <h2>Register / Sign Up</h2>
+                    @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                    {
+                         @Html.AntiForgeryToken()
+
+                         <div class="form-group">
+                                   @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Your Email", required = "required" })
+                                   <span class="form_icon" style="position: absolute; top: 10px; right: 10px;">
+                                        <i class="fa_icon form-envelope" aria-hidden="true"></i>
+                                   </span>
+                              @Html.ValidationMessageFor(m => m.Email)
+                         </div>
+
+                         <div class="form-group">
+                                   @Html.TextBoxFor(m => m.Credential, new { @class = "form-control", placeholder = "Enter Your Name", required = "required" })
+                                   <span class="form_icon" style="position: absolute; top: 10px; right: 10px;">
+                                        <i class="fa_icon form-user" aria-hidden="true"></i>
+                                   </span>
+                              @Html.ValidationMessageFor(m => m.Credential)
+                         </div>
+
+                         <div class="form-group">
+                                   @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password", required = "required" })
+                                   <span class="form_icon" style="position: absolute; top: 10px; right: 10px;">
+                                        <i class="fa_icon form-lock" aria-hidden="true"></i>
+                                   </span>
+                              @Html.ValidationMessageFor(m => m.Password)
+                         </div>
+
+                         <div class="form-group">
+                                   @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", required = "required" })
+                                   <span class="form_icon" style="position: absolute; top: 10px; right: 10px;">
+                                        <i class="fa_icon form-lock" aria-hidden="true"></i>
+                                   </span>
+                              @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                         </div>
+
+                         <div class="form-group">
+                              <button type="submit">Register</button>
+                         </div>
+                    }
+                    <p>Already Have An Account? <a href="#myModal1" data-toggle="modal" class="ms_modal hideCurrentModel">login here</a></p>
+               </div>
+          </div>
      </div>
 </div>
