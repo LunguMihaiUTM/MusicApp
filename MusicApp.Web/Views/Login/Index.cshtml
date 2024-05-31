@@ -1,8 +1,36 @@
-﻿@model dynamic
+﻿@model MusicApp.Web.Models.UserLogin
 
-@{
-     ViewBag.Title = "title";
-     Layout = "_Layout";
-}
+<!-- Modal content-->
+<div class="customLogin">
+     <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+     </button>
+     <div>
+          <div>
+               <img src="images/register_img.png" alt="" class="img-fluid" />
+          </div>
+          @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+          {
+               <body>
+               @Html.AntiForgeryToken()
+               <div class="login-container">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                         @Html.LabelFor(m => m.Credential)
+                         @Html.TextBoxFor(m => m.Credential, new { required = "required" })
+                         @Html.ValidationMessageFor(m => m.Credential)
+                    </div>
 
-<h2>title</h2>
+                    <div class="form-group">
+                         @Html.LabelFor(m => m.Password)
+                         @Html.PasswordFor(m => m.Password, new { required = "required" })
+                         @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <div class="form-group">
+                         <button type="submit">Login</button>
+                    </div>
+               </div>
+               </body>
+          }
+     </div>
+</div>
