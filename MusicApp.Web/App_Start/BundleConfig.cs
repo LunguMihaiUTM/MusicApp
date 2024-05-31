@@ -9,7 +9,7 @@ namespace MusicApp.Web
         {
             //Styles bundle
             bundles.Add(new StyleBundle("~/bundles/fonts/css").Include("~/Vendor/css/fonts.css", new CssRewriteUrlTransform()));
-            bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Vendor/css/css/bootstrap.css", new CssRewriteUrlTransform()));
+            bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Vendor/css/bootstrap.css", new CssRewriteUrlTransform()));
             bundles.Add(new StyleBundle("~/bundles/font-awesome/css").Include("~/Vendor/css/font-awesome.min.css", new CssRewriteUrlTransform()));
             bundles.Add(new StyleBundle("~/bundles/swiper/css").Include("~/Vendor/js/plugins/swiper/css/swiper.min.css", new CssRewriteUrlTransform()));
             bundles.Add(new StyleBundle("~/bundles/nice-select/css").Include("~/Vendor/js/plugins/nice_select/nice-select.css", new CssRewriteUrlTransform()));
@@ -28,7 +28,7 @@ namespace MusicApp.Web
             bundles.Add(new ScriptBundle("~/bundles/nice-select/js").Include("~/Vendor/js/plugins/nice_select/jquery.nice-select.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/mCustomScrollbar/js").Include("~/Vendor/js/plugins/scroll/jquery.mCustomScrollbar.js"));
             bundles.Add(new ScriptBundle("~/bundles/custom/js").Include("~/Vendor/js/custom.js"));
-
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
