@@ -9,7 +9,7 @@ namespace MusicApp.Web.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult _UserHeader()
+        public ActionResult Index()
         {
             return View();
         }

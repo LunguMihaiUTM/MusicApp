@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using MusicApp.BusinessLogic;
 using MusicApp.BusinessLogic.Interfaces;
 using MusicApp.Domain.Entities.User;
@@ -20,8 +21,10 @@ namespace MusicApp.Web.Controllers
             var bl = new BussinesLogic();
             _session = bl.GetSessionBL();
         }
+
+
         // GET: Login
-        public ActionResult _Login()
+        public ActionResult Index()
         {
             return View();
         }
@@ -29,7 +32,7 @@ namespace MusicApp.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult _Login(UserLogin login)
+        public ActionResult Index(UserLogin login)
         {
             if (ModelState.IsValid)
             {
@@ -38,13 +41,18 @@ namespace MusicApp.Web.Controllers
                     Credential = login.Credential,
                     Password = login.Password,
                     LoginIp = Request.UserHostAddress,
-                    LoginDateTime = DateTime.Now,
+                    LoginDateTime = DateTime.Now
                 };
+
+                data.LoginIp = Request.UserHostAddress;
+                data.LoginDateTime = DateTime.Now;
 
                 var userLogin = _session.UserLogin(data);
                 if (userLogin.Status)
                 {
-                    //ADD COOKIE
+                    HttpCookie cookie = _session.GenCookie(login.Credential);
+                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
