@@ -325,7 +325,6 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Vendor\audio\test.mp3" />
     <Content Include="Vendor\audio\test1.mp3" />
-    <Content Include="Vendor\audio\testAudio.mp3" />
     <Content Include="Vendor\css\bootstrap.css" />
     <Content Include="Vendor\css\font-awesome.min.css" />
     <Content Include="Vendor\css\fonts.css" />
@@ -530,11 +529,13 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\User\_UserHeader.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\User\_MainContent1.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Shared\_LoggedUserHeader.cshtml" />
     <Content Include="Views\Song\Index.cshtml" />
     <Content Include="Views\Song\Player.cshtml" />
+    <Content Include="Views\Login\Modal.cshtml" />
+    <Content Include="Views\Login\ModalTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

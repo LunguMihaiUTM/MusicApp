@@ -10,15 +10,15 @@
                image: 'images/weekly/song1.jpg',
                title: "Cro Magnon Man",
                artist: "Mushroom Records",
-               mp3: "http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
-               oga: "http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg",
+               mp3: "~/Vendor/audio/test.mp3",
+               
                option: myPlayListOtion
           }, {
                image: 'images/weekly/song2.jpg',
                title: "Thin Ice",
                artist: "Screaming Trees",
                mp3: "http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
-               oga: "http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg",
+               
                option: myPlayListOtion
 
           }], {

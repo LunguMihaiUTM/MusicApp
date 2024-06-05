@@ -64,10 +64,9 @@
                                    </button>
                               </div>
                               <div class="jp-progress-container flex-item">
-                                   <div class="jp-time-holder">
-                                        <span class="jp-current-time" role="timer" aria-label="time">&nbsp;</span>
-                                        <span class="jp-duration" role="timer" aria-label="duration">&nbsp;</span>
-                                   </div>
+                                   
+                                   <!--   Player Sart  -->
+                                   <!--
                                    <div class="jp-progress">
                                         <div class="jp-seek-bar">
                                              <div class="jp-play-bar">
@@ -76,6 +75,19 @@
                                              </div>
                                         </div>
                                    </div>
+                                   -->
+                                   <div class="audiocustom">
+                                        <button id="playPauseBtn" class="play-pause-btn" disabled><i class="fa fa-play" aria-hidden="true"></i></button>
+                                        <div class="progress-barcutsom" id="progressBar">
+                                             <div class="progress" id="progress"></div>
+                                        </div>
+                                        <input type="range" id="volumeControl" class="volume-control" min="0" max="1" step="0.01">
+                                   </div>
+                                   <audio id="audio">
+                                        <source id="audioSource" src="~/Vendor/audio/test1.mp3" type="audio/mp3">
+                                        Your browser does not support the audio element.
+                                   </audio>
+                                   <!-- Player Stop-->
                               </div>
                               <div class="jp-volume-controls flex-item">
                                    <div class="widget knob-container">
@@ -99,15 +111,6 @@
                                    </button>
                                    <button class="jp-repeat" tabindex="0" title="Repeat"><i class="ms_play_control"></i></button>
                               </div>
-                              <div class="jp_quality_optn custom_select">
-                                   <select>
-                                        <option>quality</option>
-                                        <option value="1">HD</option>
-                                        <option value="2">High</option>
-                                        <option value="3">medium</option>
-                                        <option value="4">low</option>
-                                   </select>
-                              </div>
                          </div>
                     </div>
                </div>
@@ -116,3 +119,200 @@
      <!--main div-->
 </div>
 
+<style>
+     /* Custom styles for the audio player */
+     .audiocustom {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          max-width: 600px;
+          margin: auto;
+     }
+
+     .play-pause-btn, .volume-control {
+          cursor: pointer;
+          background-color: #4CAF50;
+          border: none;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border-radius: 5px;
+     }
+
+
+     .progress-barcutsom {
+          flex: 1;
+          height: 10px;
+          background-color: #ddd;
+          cursor: pointer;
+          position: relative;
+          border-radius: 5px;
+          overflow: hidden;
+     }
+
+     .progress {
+          height: 100%;
+          background-color: #4CAF50;
+          width: 0;
+     }
+
+     .volume-control {
+          width: 100px;
+     }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+         const volumeControl = document.getElementById('volumeControl');
+         const audio = $('#audio')[0];
+         const playPauseBtn = $('#playPause');
+         const stopBtn = $('#stop');
+         const prevBtn = $('#prev');
+         const nextBtn = $('#next');
+         let currentSongIndex = 0;
+         let songs = [];
+
+               function loadSong(index) {
+         const song = songs[index];
+         if (song) {
+             $('#audioSource').attr('src', `@Url.Action("GetSong", "Song")?id=${song.Id}`);
+             audio.load();
+             audio.play();
+             playPauseBtn.text('Pause');
+         }
+         }
+
+         prevBtn.on('click', function () {
+              if (currentSongIndex > 0) {
+                   currentSongIndex--;
+                   loadSong(currentSongIndex);
+              }
+         });
+
+         nextBtn.on('click', function () {
+              if (currentSongIndex < songs.length - 1) {
+                   currentSongIndex++;
+                   loadSong(currentSongIndex);
+              }
+         });
+
+        playPauseBtn.addEventListener('click', function () {
+            if (audio.paused) {
+                audio.play();
+                 playPauseBtn.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>' ; // Update icon for pause
+            } else {
+                audio.pause();
+                 playPauseBtn.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>'; // Update icon for play
+            }
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = percentage + '%';
+        });
+
+        progressBar.addEventListener('click', function (e) {
+            const rect = progressBar.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const percentage = offsetX / progressBar.offsetWidth;
+            audio.currentTime = percentage * audio.duration;
+        });
+
+        volumeControl.addEventListener('input', function () {
+            audio.volume = volumeControl.value;
+        });
+
+
+        function loadSong(url) {
+            document.getElementById('audioSource').src = url;
+            audio.load();
+            playPauseBtn.disabled = false;
+         }
+
+
+
+          // Load the list of songs from the server
+          $.ajax({
+              url: '@Url.Action("GetSongs", "Song")',
+              method: 'GET',
+              success: function (data) {
+                  songs = data;
+                  if (songs.length > 0) {
+                      loadSong(currentSongIndex);
+                  }
+              }
+          });
+    });
+</script>
+
+
+<script>
+   $(document).ready(function () {
+       const audio = $('#audio')[0];
+       const playPauseBtn = $('#playPause');
+       const stopBtn = $('#stop');
+       const prevBtn = $('#prev');
+       const nextBtn = $('#next');
+       let currentSongIndex = 0;
+       let songs = [];
+
+       function loadSong(index) {
+           const song = songs[index];
+           if (song) {
+               $('#audioSource').attr('src', `@Url.Action("GetSong", "Song")?id=${song.Id}`);
+               audio.load();
+               audio.play();
+               playPauseBtn.text('Pause');
+           }
+       }
+
+       playPauseBtn.on('click', function () {
+           if (audio.paused) {
+               audio.play();
+               playPauseBtn.text('Pause');
+           } else {
+               audio.pause();
+               playPauseBtn.text('Play');
+           }
+       });
+
+       stopBtn.on('click', function () {
+           audio.pause();
+           audio.currentTime = 0;
+           playPauseBtn.text('Play');
+       });
+
+       prevBtn.on('click', function () {
+           if (currentSongIndex > 0) {
+               currentSongIndex--;
+               loadSong(currentSongIndex);
+           }
+       });
+
+       nextBtn.on('click', function () {
+           if (currentSongIndex < songs.length - 1) {
+               currentSongIndex++;
+               loadSong(currentSongIndex);
+           }
+       });
+
+
+       // Load the list of songs from the server
+       $.ajax({
+           url: '@Url.Action("GetSongs", "Song")',
+           method: 'GET',
+           success: function (data) {
+               songs = data;
+               if (songs.length > 0) {
+                   loadSong(currentSongIndex);
+               }
+           }
+       });
+   });
+</script>

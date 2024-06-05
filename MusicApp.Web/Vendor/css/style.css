@@ -2085,7 +2085,7 @@ i.ms_icon.icon_share {
 	flex-shrink: 2;
 	max-width: 630px;
 	width: 100%;
-	margin-top: 3px;
+	margin-bottom: 45px;
 }
 .jp-now-playing.flex-item {
 	-ms-flex-preferred-size: 145px;
